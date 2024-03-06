@@ -1,3 +1,12 @@
+# SOURCES
+# https://starship.rs/config
+# https://starship.rs/presets/nerd-font.html#configuration
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Timeout for commands executed by starship (ms)
+command_timeout = 1000
+
 format = """
 $username\
 $hostname\
@@ -10,10 +19,25 @@ $line_break\
 $python\
 $character"""
 
+# Add this under the [directory] section
 [directory]
-style = "cyan"
+truncation_length = 2
+format = "[$path]($style)[$lock_symbol]($lock_style) "
+style = "bold cyan"
+truncate_to_repo = false
 
 [character]
 success_symbol = "[❯](green)"
 error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](purple)"
+
+[git_branch]
+truncation_length = 25
+truncation_symbol = ''
+
+[git_commit]
+commit_hash_length = 4
+
+[cmd_duration]
+min_time = 500
+format = '[$duration](bold yellow)'
